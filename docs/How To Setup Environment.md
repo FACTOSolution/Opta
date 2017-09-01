@@ -10,3 +10,7 @@
     ```sh
     (OPTA) ~ $ pip install django
     ```
+* Clone this repository, then runserver.
+     ```sh
+    (OPTA) ~ $ .../Opta/opta_project python manage.py runserver
+    ```

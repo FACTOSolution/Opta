@@ -10,7 +10,11 @@
     ```sh
     (OPTA) ~ $ pip install django
     ```
-* Clone this repository, then runserver.
+* Clone this repository, then runserver
      ```sh
     (OPTA) ~ $ .../Opta/opta_project python manage.py runserver
+    ```
+* Create the database
+     ```sh
+    (OPTA) ~ $ .../Opta/opta_project python manage.py migrate
     ```

@@ -1,4 +1,13 @@
 <!-- Aqui deve ser a página principal. Deve conter uma caixa de pesquisa
 e informações sobre o OPTA.
 Similiar à página inicial do CATHO. https://www.catho.com.br/ -->
-{{teste}}
+<a href="{% url "listar_professor" %}">Professor</a>
+<a href="">Grupo</a>
+<a href="">Projeto</a>
+<br/>
+<h3>Busque Vagas</h3>
+<br/>
+<form action="" method="get">
+    <input type="text" name="curso" placeholder="Curso">
+    <input type="submit" value="buscar">
+</form>

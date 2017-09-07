@@ -1,0 +1,9 @@
+<h1>Professor</h1>
+<ul>
+    {% for professor in object_list %}
+    <li>{{ professor.user.username }}  :
+    <a href="{% url "atualizar_professor" professor.id %}">Editar</a>
+    <a href="{% url "excluir_professor" professor.id %}">Excluir</a>
+    </li>
+    {% endfor %}
+</ul>

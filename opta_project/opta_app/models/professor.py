@@ -22,3 +22,6 @@ class Professor(models.Model):
     @receiver(post_save, sender=User)
     def save_user_professor(sender, instance, **kwargs):
         instance.professor.save()
+
+    def __str__(self):
+        return self.user.first_name + ' ' + self.user.last_name

@@ -2,12 +2,13 @@
 e informações sobre o OPTA.
 Similiar à página inicial do CATHO. https://www.catho.com.br/ -->
 <a href="{% url "listar_professor" %}">Professor</a>
-<a href="">Grupo</a>
-<a href="">Projeto</a>
+<a href="{% url "listar_grupo" %}">Grupo</a>
+<a href="{% url "listar_projeto" %}">Projeto</a>
 <br/>
 <h3>Busque Vagas</h3>
 <br/>
 <form action="" method="get">
     <input type="text" name="curso" placeholder="Curso">
+    <input type="text" name="palavra_chave" placeholder="Palavra-chave">
     <input type="submit" value="buscar">
 </form>

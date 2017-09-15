@@ -1,0 +1,11 @@
+<h1>Grupo</h1>
+<ul>
+    {% for grupo in object_list %}
+    <li>{{ grupo.nome }}  :
+    <a href="{% url "atualizar_grupo" grupo.id %}">Editar</a>
+    <a href="{% url "excluir_grupo" grupo.id %}">Excluir</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url "criar_grupo" %}">Novo</a>

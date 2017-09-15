@@ -12,3 +12,6 @@ class Grupo(models.Model):
 
     # Relationship field
     professores = models.ManyToManyField(User, through='ProfessorGrupo')
+
+    def __str__(self):
+        return self.nome

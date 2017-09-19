@@ -4,7 +4,6 @@
     <li>{{ professor.user.username }}  :
     <a href="{% url "atualizar_professor" professor.id %}">Editar</a>
     <a href="{% url "excluir_professor" professor.id %}">Excluir</a>
-    <a href="{% url "listar_grupo_por_professor" professor.id %}">Grupos</a>
     </li>
     {% endfor %}
 </ul>

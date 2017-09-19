@@ -1,8 +1,10 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from .views import index, professor_view, grupo_view, projeto_view
 
 urlpatterns = [
     url(r'^$', index.mostrar, name='index'),
+
+    url(r'^professor/', include('django.contrib.auth.urls')),
 
     # urls from professor_view
     url(r'^professor/list$', professor_view.listar_professor, name='listar_professor'),

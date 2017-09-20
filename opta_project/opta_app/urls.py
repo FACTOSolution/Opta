@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^professor/', include('django.contrib.auth.urls')),
 
     # urls from professor_view
+    url(r'^professor/detail', professor_view.mostrar_professor, name='mostrar_professor'),
     url(r'^professor/list$', professor_view.listar_professor, name='listar_professor'),
     #url(r'^professor/new$', professor_view.criar_professor, name='criar_professor'),
     url(r'^professor/edit/(?P<pk>\d+)$', professor_view.atualizar_professor, name='atualizar_professor'),
@@ -14,10 +15,9 @@ urlpatterns = [
 
     # urls from grupo_view
     url(r'^grupo/list$', grupo_view.listar_grupo, name='listar_grupo'),
-    #url(r'^professor/(?P<pk>\d+)/grupo/list$', grupo_view.listar_grupo_por_professor, name='listar_grupo_por_professor'),
-    url(r'^grupo/new$', grupo_view.criar_grupo, name='criar_grupo'),
-    url(r'^grupo/edit/(?P<pk>\d+)$', grupo_view.atualizar_grupo, name='atualizar_grupo'),
-    url(r'^grupo/delete/(?P<pk>\d+)$', grupo_view.excluir_grupo, name='excluir_grupo'),
+    url(r'^professor/grupo/new$', grupo_view.criar_grupo, name='criar_grupo'),
+    url(r'^professor/grupo/edit/(?P<pk>\d+)$', grupo_view.atualizar_grupo, name='atualizar_grupo'),
+    url(r'^professor/grupo/delete/(?P<pk>\d+)$', grupo_view.excluir_grupo, name='excluir_grupo'),
 
     # urls from projeto_view
     url(r'^projeto/list$', projeto_view.listar_projeto, name='listar_projeto'),

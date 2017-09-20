@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+Teste
+<h1>Professor</h1>
+{{ professor.user.username }}  :
+<h1>Grupo</h1>
+<ul>
+    {% for grupo in grupos %}
+    <li>{{ grupo.nome }}  :
+    <a href="{% url "atualizar_grupo" grupo.id %}">Editar</a>
+    <a href="{% url "excluir_grupo" grupo.id %}">Excluir</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url "criar_grupo" %}">Novo</a>
+
+{% endblock %}

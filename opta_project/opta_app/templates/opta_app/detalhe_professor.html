@@ -8,12 +8,13 @@ Teste
 <ul>
     {% for grupo in grupos %}
     <li>{{ grupo.nome }}  :
-    <a href="{% url "atualizar_grupo" grupo.id %}">Editar</a>
-    <a href="{% url "excluir_grupo" grupo.id %}">Excluir</a>
+    <a href="{% url "atualizar_grupo" professor.id grupo.id %}">Editar</a>
+    <a href="{% url "excluir_grupo" professor.id grupo.id %}">Excluir</a>
+    <a href="{% url "mostrar_grupo" professor.id grupo.id %}">Ver Grupo</a>
     </li>
     {% endfor %}
 </ul>
 
-<a href="{% url "criar_grupo" %}">Novo</a>
+<a href="{% url "criar_grupo" professor.id %}">Novo</a>
 
 {% endblock %}

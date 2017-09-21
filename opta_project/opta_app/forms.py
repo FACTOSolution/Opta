@@ -22,4 +22,4 @@ class GrupoForm(forms.ModelForm):
 class ProjetoForm(forms.ModelForm):
     class Meta:
         model = Projeto
-        fields = ['titulo', 'subtitulo', 'descricao', 'requisitos', 'professor', 'grupo', 'vagas']
+        fields = ['titulo', 'subtitulo', 'descricao', 'requisitos', 'vagas']

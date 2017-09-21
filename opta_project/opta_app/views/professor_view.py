@@ -24,8 +24,8 @@ def listar_professor(request, template_name='opta_app/lista_professor.html'):
     return render(request, template_name, data)
 
 @login_required
-def atualizar_professor(request, pk, template_name='opta_app/form_professor.html'):
-    professor = get_object_or_404(Professor, pk=pk)
+def atualizar_professor(request, pk_prof, template_name='opta_app/form_professor.html'):
+    professor = get_object_or_404(Professor, pk=pk_prof)
     user = get_object_or_404(User, pk=professor.user_id)
     user_form = UserForm(request.POST or None, instance=user)
     professor_form = ProfessorForm(request.POST or None, instance=user.professor)
@@ -37,8 +37,8 @@ def atualizar_professor(request, pk, template_name='opta_app/form_professor.html
         'professor_form': professor_form})
 
 @login_required
-def excluir_professor(request, pk, template_name='opta_app/professor_confirm_delete.html'):
-    professor = get_object_or_404(Professor, pk=pk)
+def excluir_professor(request, pk_prof, template_name='opta_app/professor_confirm_delete.html'):
+    professor = get_object_or_404(Professor, pk=pk_prof)
     if request.method=='POST':
         professor.delete()
         return redirect('listar_professor')

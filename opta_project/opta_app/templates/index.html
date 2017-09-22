@@ -9,10 +9,12 @@ Similiar à página inicial do CATHO. https://www.catho.com.br/ -->
 <a href="{% url "listar_projeto" %}">Projeto</a>
 <br/>
 <h3>Busque Vagas</h3>
-<br/>
+<h5>{{ total_vagas }} oportunidades acadêmicas</h5>
 <form action="" method="get">
     <input type="text" name="curso" placeholder="Curso">
+    <br/>
     <input type="text" name="palavra_chave" placeholder="Palavra-chave">
+    <br/>
     <input type="submit" value="buscar">
 </form>
 {% endblock %}

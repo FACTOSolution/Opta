@@ -53,3 +53,10 @@ def excluir_projeto(request, pk_prof, pk_grupo, pk_proj, template_name='opta_app
         projeto.delete()
         return redirect('mostrar_grupo', pk_prof, pk_grupo)
     return render(request, template_name, {'object':projeto})
+
+def get_total_vagas():
+    total_vagas = 0
+    projetos = Projeto.objects.all()
+    for projeto in projetos:
+        total_vagas += projeto.vagas
+    return total_vagas

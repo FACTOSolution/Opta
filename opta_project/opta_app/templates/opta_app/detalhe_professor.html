@@ -1,10 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-Teste
 <h1>Professor</h1>
-{{ professor.user.username }}  :
-<h1>Grupo</h1>
+Nome: {{ professor }}</br>
+Email: {{ professor.user.email }}</br>
+Área: {{ professor.area }}</br>
+Subárea: {{ professor.subarea }}</br>
+Lattes: {{ professor.lattes }}</br>
+<a href="{% url "atualizar_professor" professor.id %}">Editar Perfil</a></br>
+<h1>Grupos</h1>
 <ul>
     {% for grupo in grupos %}
     <li>{{ grupo.nome }}  :

@@ -32,7 +32,7 @@ def atualizar_professor(request, pk_prof, template_name='opta_app/form_professor
     if user_form.is_valid() and professor_form.is_valid():
         user_form.save()
         professor_form.save()
-        return redirect('listar_professor')
+        return redirect('mostrar_professor')
     return render(request, template_name, {'user_form': user_form,
         'professor_form': professor_form})
 

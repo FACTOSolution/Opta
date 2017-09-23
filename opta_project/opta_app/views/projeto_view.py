@@ -6,10 +6,13 @@ from ..forms import ProjetoForm
 
 @login_required
 def mostrar_projeto(request, pk_prof, pk_grupo, pk_proj,  template_name='opta_app/detalhe_projeto.html'):
-    projeto = get_object_or_404(Projeto, pk=pk_proj)
-    data = {}
-    data['projeto'] = projeto
-    return render(request, template_name, data)
+    professor = get_object_or_404(Professor, pk=pk_prof)
+    if request.user.professor == professor:
+        projeto = get_object_or_404(Projeto, pk=pk_proj)
+        data = {}
+        data['projeto'] = projeto
+        return render(request, template_name, data)
+    return redirect('mostrar_professor')
 
 @login_required
 def listar_projeto(request, template_name='opta_app/lista_projeto.html'):
@@ -21,38 +24,45 @@ def listar_projeto(request, template_name='opta_app/lista_projeto.html'):
 @login_required
 def criar_projeto(request, pk_prof, pk_grupo, template_name='opta_app/form_projeto.html'):
     professor = get_object_or_404(Professor, pk=pk_prof)
-    user = get_object_or_404(User, pk=professor.user_id)
-    grupo = get_object_or_404(Grupo, pk=pk_grupo)
-    form = ProjetoForm(request.POST or None)
-    if form.is_valid():
-        proj_obj = form.cleaned_data
-        titulo = proj_obj['titulo']
-        subtitulo = proj_obj['subtitulo']
-        descricao = proj_obj['descricao']
-        requisitos = proj_obj['requisitos']
-        vagas = proj_obj['vagas']
-        projeto = Projeto.objects.create(
-            titulo=titulo, subtitulo=subtitulo, descricao=descricao,
-            requisitos=requisitos, vagas=vagas, professor=user, grupo=grupo)
-        return redirect('mostrar_grupo', pk_prof, pk_grupo)
-    return render(request, template_name, {'form':form})
+    if request.user.professor == professor:
+        grupo = get_object_or_404(Grupo, pk=pk_grupo)
+        form = ProjetoForm(request.POST or None)
+        if form.is_valid():
+            proj_obj = form.cleaned_data
+            titulo = proj_obj['titulo']
+            subtitulo = proj_obj['subtitulo']
+            descricao = proj_obj['descricao']
+            requisitos = proj_obj['requisitos']
+            vagas = proj_obj['vagas']
+            projeto = Projeto.objects.create(
+                titulo=titulo, subtitulo=subtitulo, descricao=descricao,
+                requisitos=requisitos, vagas=vagas, professor=request.user, grupo=grupo)
+            return redirect('mostrar_grupo', pk_prof, pk_grupo)
+        return render(request, template_name, {'form':form})
+    return redirect('mostrar_professor')
 
 @login_required
 def atualizar_projeto(request, pk_prof, pk_grupo, pk_proj, template_name='opta_app/form_projeto.html'):
-    projeto = get_object_or_404(Projeto, pk=pk_proj)
-    form = ProjetoForm(request.POST or None, instance=projeto)
-    if form.is_valid():
-        form.save()
-        return redirect('mostrar_grupo', pk_prof, pk_grupo)
-    return render(request, template_name, {'form':form})
+    professor = get_object_or_404(Professor, pk=pk_prof)
+    if request.user.professor == professor:
+        projeto = get_object_or_404(Projeto, pk=pk_proj)
+        form = ProjetoForm(request.POST or None, instance=projeto)
+        if form.is_valid():
+            form.save()
+            return redirect('mostrar_grupo', pk_prof, pk_grupo)
+        return render(request, template_name, {'form':form})
+    return redirect('mostrar_professor')
 
 @login_required
 def excluir_projeto(request, pk_prof, pk_grupo, pk_proj, template_name='opta_app/projeto_confirm_delete.html'):
-    projeto = get_object_or_404(Projeto, pk=pk_proj)
-    if request.method=='POST':
-        projeto.delete()
-        return redirect('mostrar_grupo', pk_prof, pk_grupo)
-    return render(request, template_name, {'object':projeto})
+    professor = get_object_or_404(Professor, pk=pk_prof)
+    if request.user.professor == professor:
+        projeto = get_object_or_404(Projeto, pk=pk_proj)
+        if request.method=='POST':
+            projeto.delete()
+            return redirect('mostrar_grupo', pk_prof, pk_grupo)
+        return render(request, template_name, {'object':projeto})
+    return redirect('mostrar_professor')
 
 def get_total_vagas():
     total_vagas = 0

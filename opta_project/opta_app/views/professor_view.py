@@ -6,11 +6,11 @@ from ..forms import UserForm, ProfessorForm
 
 @login_required(redirect_field_name='mostrar_professor')
 def mostrar_professor(request, template_name='opta_app/detalhe_professor.html'):
-    professor = Professor.objects.get(user_id=request.user.id)
+    professor = request.user.professor
     relacionamentos = ProfessorGrupo.objects.filter(professor_id=professor.id)
     grupos = []
-    for r in relacionamentos:
-        grupos.append(Grupo.objects.get(id=r.grupo_id))
+    for rel in relacionamentos:
+        grupos.append(Grupo.objects.get(id=rel.grupo_id))
     data = {}
     data['professor'] = professor
     data['grupos'] = grupos
@@ -26,20 +26,20 @@ def listar_professor(request, template_name='opta_app/lista_professor.html'):
 @login_required
 def atualizar_professor(request, pk_prof, template_name='opta_app/form_professor.html'):
     professor = get_object_or_404(Professor, pk=pk_prof)
-    user = get_object_or_404(User, pk=professor.user_id)
-    user_form = UserForm(request.POST or None, instance=user)
-    professor_form = ProfessorForm(request.POST or None, instance=user.professor)
-    if user_form.is_valid() and professor_form.is_valid():
-        user_form.save()
-        professor_form.save()
-        return redirect('mostrar_professor')
-    return render(request, template_name, {'user_form': user_form,
-        'professor_form': professor_form})
+    if request.user.professor == professor:
+        user_form = UserForm(request.POST or None, instance=request.user)
+        professor_form = ProfessorForm(request.POST or None, instance=professor)
+        if user_form.is_valid() and professor_form.is_valid():
+            user_form.save()
+            professor_form.save()
+            return redirect('mostrar_professor')
+        return render(request, template_name, {'user_form': user_form,
+            'professor_form': professor_form})
 
-@login_required
-def excluir_professor(request, pk_prof, template_name='opta_app/professor_confirm_delete.html'):
-    professor = get_object_or_404(Professor, pk=pk_prof)
-    if request.method=='POST':
-        professor.delete()
-        return redirect('listar_professor')
-    return render(request, template_name, {'object':professor})
+#@login_required
+#def excluir_professor(request, pk_prof, template_name='opta_app/professor_confirm_delete.html'):
+#    professor = request.user.prof
+#    if request.method=='POST':
+#        professor.delete()
+#        return redirect('listar_professor')
+#    return render(request, template_name, {'object':professor})

@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^professor/detail/$', professor_view.mostrar_professor, name='mostrar_professor'),
     url(r'^professor/(?P<pk_prof>\d+)/', include([
         url(r'^edit/$', professor_view.atualizar_professor, name='atualizar_professor'),
-        url(r'^delete/$', professor_view.excluir_professor, name='excluir_professor'),
+        #url(r'^delete/$', professor_view.excluir_professor, name='excluir_professor'),
     ])),
     url(r'^professor/(?P<pk_prof>\d+)/', include(grupo_patterns)),
 

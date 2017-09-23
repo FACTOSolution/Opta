@@ -10,7 +10,7 @@ Similiar à página inicial do CATHO. https://www.catho.com.br/ -->
 <br/>
 <h3>Busque Vagas</h3>
 <h5>{{ total_vagas }} oportunidades acadêmicas</h5>
-<form action="" method="get">
+<form action="{% url "buscar_oportunidade" %}" method="get">
     <input type="text" name="curso" placeholder="Curso">
     <br/>
     <input type="text" name="palavra_chave" placeholder="Palavra-chave">

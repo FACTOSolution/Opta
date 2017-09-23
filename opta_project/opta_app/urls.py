@@ -37,6 +37,11 @@ urlpatterns = [
 
     url(r'^professor/list$', professor_view.listar_professor, name='listar_professor'),
 
+    # url do botão buscar da tela inicial
+    url(r'^busca/$', index.buscar_oportunidade, name='buscar_oportunidade'),
+    
+    url(r'^projeto/(?P<pk_proj>\d+)/', projeto_view.ver_projeto, name='ver_projeto'),
+
     # urls from grupo_view
     url(r'^grupo/list$', grupo_view.listar_grupo, name='listar_grupo'),
 

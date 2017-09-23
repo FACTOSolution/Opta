@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>BUSCA</h1>
+<ul>
+    {% for projeto in projetos %}
+    <li>{{ projeto.titulo }}</br>
+      {{ projeto.vagas}}
+      <a href="{% url 'ver_projeto' projeto.id %}">Ver Projeto</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

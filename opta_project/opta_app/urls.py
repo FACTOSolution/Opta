@@ -17,6 +17,7 @@ grupo_patterns = [
         url(r'^detail/$', grupo_view.mostrar_grupo, name='mostrar_grupo'),
         url(r'^edit/$', grupo_view.atualizar_grupo, name='atualizar_grupo'),
         url(r'^delete/$', grupo_view.excluir_grupo, name='excluir_grupo'),
+        url(r'^add_prof/$', grupo_view.adicionar_professor_ao_grupo, name='adicionar_professor_ao_grupo'),
     ])),
     url(r'^grupo/(?P<pk_grupo>\d+)/', include(projeto_patterns)),
 
@@ -39,7 +40,7 @@ urlpatterns = [
 
     # url do botão buscar da tela inicial
     url(r'^busca/$', index.buscar_oportunidade, name='buscar_oportunidade'),
-    
+
     url(r'^projeto/(?P<pk_proj>\d+)/', projeto_view.ver_projeto, name='ver_projeto'),
 
     # urls from grupo_view

@@ -17,9 +17,16 @@ class ProfessorForm(forms.ModelForm):
 class GrupoForm(forms.ModelForm):
     class Meta:
         model = Grupo
-        fields = ['nome', 'descricao', 'site', 'area', 'centro', 'curso']
+        fields = ['nome', 'descricao', 'site', 'area', 'centro', 'curso', 'professores']
 
 class ProjetoForm(forms.ModelForm):
     class Meta:
         model = Projeto
         fields = ['titulo', 'subtitulo', 'descricao', 'requisitos', 'vagas']
+
+class AdicionarProfessorAoGrupoForm(forms.Form):
+    professor = forms.CharField(
+        required=True,
+        label='Professor',
+        max_length=32
+    )

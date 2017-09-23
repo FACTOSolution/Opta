@@ -4,6 +4,8 @@
 Teste
 <h1>Grupo</h1>
 {{ grupo.nome }}  :
+
+<a href="{% url "adicionar_professor_ao_grupo" pk_prof grupo.id %}">Adicionar Professor</a>
 <h1>Projeto</h1>
 <ul>
     {% for projeto in projetos %}
